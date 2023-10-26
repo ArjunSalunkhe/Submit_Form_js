@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .main{
+            width: 100%;
+            height: 100vh;
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .inner{
+            width: 40%;
+            height:50%;
+            background-color: white;
+            text-align: center;
+            padding: 2% 5%;
+        }
+        .inner>h1{
+            margin-bottom: 2%;
+        }
+        .form :nth-child(1){
+            margin-bottom: 5%;
+            font-size: 1.5vw;
+        }
+        #user{
+            width: 60%;
+            height: 30px;
+            font-size: 1.2vw;
+            margin-top: 1%;
+            margin-bottom: 1%;
+        }
+        #pass{
+            width: 60%;
+            height: 30px;
+            font-size: 1.2vw;
+            margin-top: 1%;
+            margin-bottom: 1%;
+        }
+        #btn{
+            width: 30%;
+            font-size: 1.2vw;
+            background-color: brown;
+            color: white;
+        }
+        .error{
+            /* border: 1px solid red; */
+            display: inline-block;
+            font-size: 1.2vw;
+            color: red;
+            width: 60%;
+            text-align: start;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <div class="inner">
+            <h1>Submit Form</h1>
+            <div class="form">
+                <form action="" onsubmit="return validateForm()">
+                    <label for="">username</label> <br>
+                    <input type="text" id="user" placeholder="Enter ur username"> <br>
+                    <p class="error" id="usererror"></p> <br>
+                    <label for="">password</label> <br>
+                    <input type="password" id="pass" placeholder="Enter ur password"> <br>
+                    <p class="error" id="passerror"></p> <br>
+                    <button type="submit" id="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    
+    <script>
+
+        let flag;
+
+        let user = document.querySelector("#user");
+        let pass = document.querySelector("#pass");
+
+        let uError = document.querySelector("#usererror");
+        let pError = document.querySelector("#passerror");
+
+        let validateForm = ()=>{
+            if(user.value == ""){
+                uError.innerHTML = "Plz Enter Username!"
+                flag = 0;
+            }else if(!(isNaN(user.value))){
+                uError.innerHTML = "Plz Enter string char!"
+                flag = 0;   
+            }
+            else if(user.value.length < 3){
+                uError.innerHTML = "its required min 3 char..."
+                flag = 0;
+            }else{
+                uError.innerHTML = "";
+                flag = 1;
+            }
+
+            if(pass.value == ""){
+                pError.innerHTML = "Plz Enter Password!"
+                flag = 0;
+            }else{
+                pError.innerHTML = "";
+                flag = 1;
+            }
+
+            if(flag === 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+    </script>
+
+</body>
+</html>
